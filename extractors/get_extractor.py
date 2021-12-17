@@ -6,6 +6,7 @@ from extractors.FlacExtractor import FlacExtractor
 from extractors.MediaExtractor import MediaExtractor
 from extractors.Mp3Extractor import Mp3Extractor
 from extractors.Mp4Extractor import Mp4Extractor
+from extractors.WavExtractor import WaveExtractor
 
 
 def get_extractor(filename) -> Optional[MediaExtractor]:
@@ -19,5 +20,8 @@ def get_extractor(filename) -> Optional[MediaExtractor]:
         return AacExtractor(filename)
     elif filename.endswith(".mp4") or filename.endswith(".m4a"):
         return Mp4Extractor(filename)
+    elif filename.endswith(".aiff") or filename.endswith(".wav") \
+            or filename.endswith(".wave") or filename.endswith(".pcm"):
+        return WaveExtractor(filename)
     else:
         return None
