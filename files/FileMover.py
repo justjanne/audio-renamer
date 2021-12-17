@@ -2,6 +2,7 @@ import os
 from typing import Optional
 from uuid import uuid4
 
+from customio.streams import stderr
 from extractors.get_extractor import get_extractor
 from files.FileMetaParser import FileMetaParser
 from models.FileMeta import FileMeta
@@ -38,15 +39,15 @@ class FileMover:
     def move(self, name: str) -> Optional[FileMove]:
         extractor = get_extractor(name)
         if extractor is None:
-            print("No Extractor for file: {0}".format(name))
+            stderr().log("No Extractor for file: {0}".format(name))
             return None
         track_meta = extractor.extract_tags()
         if track_meta is None:
-            print("No Metadata for file: {0}".format(name))
+            stderr().log("No Metadata for file: {0}".format(name))
             return None
         file_meta = FileMetaParser(track_meta).get_meta()
         if file_meta is None:
-            print("Metadata for file not valid: {0}".format(name))
+            stderr().log("Metadata for file not valid: {0}".format(name))
             return None
 
         target = self.__get_target_path(name, file_meta)

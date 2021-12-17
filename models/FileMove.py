@@ -1,5 +1,7 @@
 import os
 
+from customio.streams import stdout
+
 
 class FileMove:
     source: str
@@ -20,9 +22,9 @@ class FileMove:
 
     def move_target(self, dry_run: bool = True):
         if dry_run:
-            print("Moving File:")
-            print("  ← {0}".format(self.source))
-            print("  → {0}".format(self.target))
+            stdout().log("Moving File:")
+            stdout().log("  ← {0}".format(self.source))
+            stdout().log("  → {0}".format(self.target))
         else:
             target_folder = os.path.dirname(self.target)
             if not os.path.exists(target_folder):

@@ -12,3 +12,9 @@ class FileFinder:
         for subdir, dirs, files in os.walk(self.folder):
             for filename in files:
                 yield os.path.join(self.folder, subdir, filename)
+
+    def count(self) -> int:
+        count = 0
+        for subdir, dirs, files in os.walk(self.folder):
+            count += len(files)
+        return count
