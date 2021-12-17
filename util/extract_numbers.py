@@ -5,6 +5,9 @@ def extract_numbers(tag: str) -> Tuple[Optional[str], Optional[str]]:
     number = None
     total = None
 
+    if tag is None:
+        return number, total
+
     split = str(tag).split("/")
     if len(split) >= 1:
         number = int(split[0])

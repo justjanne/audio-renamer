@@ -58,6 +58,3 @@ class TrackMeta:
         self.titlesort = titlesort
         self.tracknumber = tracknumber
         self.tracktotal = tracktotal
-
-
-
